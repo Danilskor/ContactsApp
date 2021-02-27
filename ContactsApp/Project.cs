@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-    class Project
+    public class Project
     {
         public List<Contact> Contacts { get; set; } = new List<Contact>();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-    class Contact : ICloneable
+    public class Contact : ICloneable
     {
         private string _surname;
 

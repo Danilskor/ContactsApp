@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-    class Contact
+    class Contact : ICloneable
     {
         private string _surname;
 
@@ -104,6 +104,9 @@ namespace ContactsApp
             }
         }
 
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

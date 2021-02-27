@@ -13,6 +13,7 @@ namespace ContactsApp
         public string NumberPhone
         {
             get { return _numberPhone;}
+
             set
             {
                 foreach (var var in value)

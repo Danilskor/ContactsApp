@@ -18,6 +18,7 @@ namespace ContactsApp
 
         private string _vkID;
 
+        private PhoneNumber phoneNumber;
         public string Surname
         {
             get { return _surname; }
@@ -83,6 +84,7 @@ namespace ContactsApp
                 _vkID = value;
             }
         }
+
         public static void ContactValidator(string text)
         {
             if (string.IsNullOrEmpty(text))

@@ -8,15 +8,27 @@ using Newtonsoft.Json;
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Сохраняет файл и извлекает из файла список контактов.
+    /// </summary>
     public static class ProjectManager
     {
-        
+        /// <summary>
+        /// Путь к файлу.
+        /// </summary>
         private static readonly string DirectoryPath = System.Environment.GetFolderPath(
                                                            System.Environment.SpecialFolder.ApplicationData)
                                                        + @"\ContactsApp";
-
+        /// <summary>
+        /// Полное имя файла.
+        /// </summary>
         private static readonly string FilePath = DirectoryPath + @"\ContactsApp.json";
 
+        /// <summary>
+        /// Метод сериализации включает проверку существования пути и файла
+        /// при необходимости создает папку и файл.
+        /// </summary>
+        /// <param name="contacts">Список контактов.</param>
         public static void SaveToFile(Project contacts)
         {
             JsonSerializer serializer = new JsonSerializer();
@@ -38,6 +50,10 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Метод десериализации, включает проверку на существование файла.
+        /// </summary>
+        /// <returns name="contacts">Список контактов</returns>
         public static Project LoadFromFile()
         {
             

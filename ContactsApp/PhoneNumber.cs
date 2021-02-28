@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Телефонный номер
+    /// </summary>
     public class PhoneNumber
     {
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         private string _numberPhone;
+
+        /// <summary>
+        /// Свойства номера телефона, с исключениями на валидность значений.
+        /// </summary>
 
         public string NumberPhone
         {
@@ -39,6 +49,10 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Конструктор класса номер телефона.
+        /// </summary>
+        /// <param name="numberPhone">Номер телефона.</param>
         public PhoneNumber(string numberPhone)
         {
             NumberPhone = numberPhone;

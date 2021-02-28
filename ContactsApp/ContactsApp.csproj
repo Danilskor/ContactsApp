@@ -47,7 +47,7 @@
     <Compile Include="Contact.cs" />
     <Compile Include="PhoneNumber.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectManeger.cs" />
+    <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

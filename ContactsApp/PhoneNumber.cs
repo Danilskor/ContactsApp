@@ -29,7 +29,8 @@ namespace ContactsApp
                     throw new ArgumentException("Номер должен состоять из 11 цифр");
                 }
 
-                if (value[0] != 7)
+                var abc = value[0];
+                if (value[0] != '7')
                 {
                     throw new ArgumentException("Код страны должен быть 7");
                 }

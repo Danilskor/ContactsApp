@@ -8,11 +8,11 @@ namespace ContactsApp
 {
     public class Project
     {
-        public List<Contact> Contacts { get; set; } = new List<Contact>();
+        public List<Contact> _contacts { get; set; } = new List<Contact>();
 
         public void AddElement (Contact newContact)
         {
-            Contacts.Add(newContact);
+            _contacts.Add(newContact);
         }
     }
 }

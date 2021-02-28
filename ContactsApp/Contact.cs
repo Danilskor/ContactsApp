@@ -18,7 +18,19 @@ namespace ContactsApp
 
         private string _vkID;
 
-        private PhoneNumber phoneNumber;
+        private PhoneNumber _numberPhone;
+
+        public Contact(string surname, string name, DateTime birthDate, string email, string vkID, string numberPhone)
+        {
+            Surname = surname;
+            Name = name;
+            BirthDate = birthDate;
+            Email = email;
+            VkID = vkID;
+            NumberPhone = new PhoneNumber(numberPhone);
+        }
+
+        public PhoneNumber NumberPhone { get; set;}
         public string Surname
         {
             get { return _surname; }
@@ -76,7 +88,7 @@ namespace ContactsApp
 
         public string VkID
         {
-            get { return _vkID;}
+            get { return _vkID; }
 
             set
             {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactsApp
 {
@@ -14,16 +10,17 @@ namespace ContactsApp
         /// <summary>
         /// Номер телефона.
         /// </summary>
-        private string _numberPhone;
+        private string _phoneNumber;
 
         /// <summary>
         /// Свойства номера телефона, с исключениями на валидность значений.
         /// </summary>
-
-        public string NumberPhone
+        public string Number
         {
-            get { return _numberPhone;}
-
+            get
+            {
+                return _phoneNumber;
+            }
             set
             {
                 foreach (var var in value)
@@ -45,7 +42,7 @@ namespace ContactsApp
                     throw new ArgumentException("Код страны должен быть 7");
                 }
 
-                _numberPhone = value;
+                _phoneNumber = value;
             }
         }
 
@@ -53,9 +50,9 @@ namespace ContactsApp
         /// Конструктор класса номер телефона.
         /// </summary>
         /// <param name="numberPhone">Номер телефона.</param>
-        public PhoneNumber(string numberPhone)
+        public PhoneNumber(string phoneNumber)
         {
-            NumberPhone = numberPhone;
+            Number = phoneNumber;
         }
     }
 }

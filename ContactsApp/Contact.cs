@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactsApp
 {
@@ -37,33 +33,9 @@ namespace ContactsApp
         private string _vkID;
 
         /// <summary>
-        /// Номер телефона
+        /// Свойство номера телефона.
         /// </summary>
-        private PhoneNumber _numberPhone;
-
-        /// <summary>
-        /// Конструктор класса Contact.
-        /// </summary>
-        /// <param name="surname"> Фамилия.</param>
-        /// <param name="name"> Имя. </param>
-        /// <param name="birthDate"> Дата рождения. </param>
-        /// <param name="email"> Е-mail. </param>
-        /// <param name="vkID"> ID Вконтакте. </param>
-        /// <param name="numberPhone"> Телефонный номер. </param>
-        public Contact(string surname, string name, DateTime birthDate, string email, string vkID, string numberPhone)
-        {
-            Surname = surname;
-            Name = name;
-            BirthDate = birthDate;
-            Email = email;
-            VkID = vkID;
-            NumberPhone = new PhoneNumber(numberPhone);
-        }
-
-        /// <summary>
-        /// Свойства номера телефона.
-        /// </summary>
-        public PhoneNumber NumberPhone { get; set;}
+        public PhoneNumber PhoneNumber { get; set;}
 
         /// <summary>
         /// Свойства фамилли с проверкой на валидность данных
@@ -71,31 +43,33 @@ namespace ContactsApp
         /// </summary>
         public string Surname
         {
-            get { return _surname; }
-
+            get
+            {
+                return _surname;
+            }
             set
             {
-                ContactValidator(value);
-                value.ToLower();
-                value = char.ToUpper(value[0]) + value.Substring(1);
+                Validator.AssertText(value, 50, "Фамилия");
+                Validator.ToNameFormat(value);
                 _surname = value;
             }
         }
 
         /// <summary>
-        /// Свойства имени с проверкой на валидность данных
+        /// Свойство имени с проверкой на валидность данных
         /// Первый символ преобразует в верхний регистр, остальные в нижний.
         /// </summary>
 
         public string Name
         {
-            get { return _name;}
-
+            get
+            {
+                return _name;
+            }
             set
             {
-                ContactValidator(value);
-                value.ToLower();
-                value = char.ToUpper(value[0]) + value.Substring(1);
+                Validator.AssertText(value, 50, "Имя");
+                Validator.ToNameFormat(value);
                 _name = value;
             }
         }
@@ -105,8 +79,10 @@ namespace ContactsApp
         /// </summary>
         public DateTime BirthDate
         {
-            get { return _birthDate;}
-
+            get
+            {
+                return _birthDate;
+            }
             set
             {
                 var minimalDate = new DateTime(1900, 01, 01);
@@ -126,11 +102,13 @@ namespace ContactsApp
         /// </summary>
         public string Email
         {
-            get { return _email;}
-
+            get
+            {
+                return _email;
+            }
             set
             {
-                ContactValidator(value);
+                Validator.AssertText(value, 50, "E-mail");
                 _email = value;
             }
         }
@@ -140,45 +118,35 @@ namespace ContactsApp
         /// </summary>
         public string VkID
         {
-            get { return _vkID; }
-
+            get
+            {
+                return _vkID;
+            }
             set
             {
-                VkIDValidator(value);
-                _vkID = value;
+                Validator.AssertText(value, 15, "ID Вконтакте");
+                VkID = value;
             }
         }
 
         /// <summary>
-        /// Валидатор для фамилии, имени и E-mail'a
-        /// Проверяет на наличие введенного текста, а так же
-        /// на длину, которая должна быть не более 50 символов.
+        /// Конструктор класса Contact.
         /// </summary>
-        /// <param name="text">Входной текст.</param>
-        public static void ContactValidator(string text)
+        /// <param name="surname"> Фамилия.</param>
+        /// <param name="name"> Имя. </param>
+        /// <param name="birthDate"> Дата рождения. </param>
+        /// <param name="email"> Е-mail. </param>
+        /// <param name="vkID"> ID Вконтакте. </param>
+        /// <param name="phoneNumber"> Телефонный номер. </param>
+        public Contact(string surname, string name, DateTime birthDate, string email, string vkID,
+            PhoneNumber phoneNumber)
         {
-            if (string.IsNullOrEmpty(text))
-            {
-                throw new ArgumentException("Ничего не введено.");
-            }
-
-            if (text.Length > 50)
-            {
-                throw new ArgumentException("Длина фамилии, имени и e-mail должно быть не более 50 символов.");
-            }
-        }
-
-        /// <summary>
-        /// Валидатор для ID Вконтакте
-        /// Проверят длину строки (не более 15 символов)
-        /// </summary>
-        /// <param name="vkID"> ID Вконтакте.</param>
-        public static void VkIDValidator(string vkID)
-        {
-            if (vkID.Length > 15)
-            {
-                throw new ArgumentException("Длина ID Вконтакте должно быть не более 15 символов.");
-            }
+            Surname = surname;
+            Name = name;
+            BirthDate = birthDate;
+            Email = email;
+            VkID = vkID;
+            PhoneNumber = new PhoneNumber(phoneNumber.Number);
         }
 
         /// <summary>
@@ -187,7 +155,15 @@ namespace ContactsApp
         /// <returns> Склонированный контакт. </returns>
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return new Contact(Surname, Name, BirthDate, Email, VkID, PhoneNumber)
+            {
+                Surname = this.Surname,
+                Name = this.Name,
+                BirthDate = this.BirthDate,
+                Email = this.Email,
+                VkID = this.VkID,
+                PhoneNumber = new PhoneNumber(this.PhoneNumber.Number)
+            };
         }
     }
 }

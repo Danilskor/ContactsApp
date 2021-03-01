@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace ContactsApp
@@ -16,34 +12,48 @@ namespace ContactsApp
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        private static readonly string DirectoryPath = System.Environment.GetFolderPath(
-                                                           System.Environment.SpecialFolder.ApplicationData)
-                                                       + @"\ContactsApp";
+        public static string DefaultDirectoryPath
+        {
+            get
+            {
+                var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) 
+                                    + @"\ContactsApp";
+                return directoryPath;
+            }
+        }
+
         /// <summary>
         /// Полное имя файла.
         /// </summary>
-        private static readonly string FilePath = DirectoryPath + @"\ContactsApp.json";
+        public static string DefaultFilePath
+        {
+            get
+            {
+                var filePath = DefaultDirectoryPath + @"\ContactsApp.json";
+                return filePath;
+            }
+        }
 
         /// <summary>
         /// Метод сериализации включает проверку существования пути и файла
         /// при необходимости создает папку и файл.
         /// </summary>
         /// <param name="contacts">Список контактов.</param>
-        public static void SaveToFile(Project contacts)
+        public static void SaveToFile(Project contacts,string directoruPath, string filePath)
         {
             JsonSerializer serializer = new JsonSerializer();
 
-            if (!Directory.Exists(DirectoryPath))
+            if (!Directory.Exists(directoruPath))
             {
-                Directory.CreateDirectory(DirectoryPath);
+                Directory.CreateDirectory(directoruPath);
             }
 
-            if (!File.Exists((FilePath)))
+            if (!File.Exists((filePath)))
             {
-                File.Create(FilePath);
+                File.Create(filePath);
             }
 
-            using (StreamWriter sw = new StreamWriter(FilePath))
+            using (StreamWriter sw = new StreamWriter(filePath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             { 
                 serializer.Serialize(writer, contacts);
@@ -59,15 +69,17 @@ namespace ContactsApp
             
             Project contacts = null;
 
-            if (File.Exists(FilePath))
+            if (!File.Exists(DefaultFilePath))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                return new Project();
+            }
 
-                using (StreamReader sr = new StreamReader(FilePath))
-                using (JsonReader reader = new JsonTextReader(sr))
-                {
-                    contacts = (Project) serializer.Deserialize<Project>(reader);
-                }
+            JsonSerializer serializer = new JsonSerializer();
+
+            using (StreamReader sr = new StreamReader(DefaultFilePath))
+            using (JsonReader reader = new JsonTextReader(sr))
+            {
+                contacts = (Project) serializer.Deserialize<Project>(reader);
             }
 
             return contacts;

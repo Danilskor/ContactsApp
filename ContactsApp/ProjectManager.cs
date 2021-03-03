@@ -39,13 +39,13 @@ namespace ContactsApp
         /// при необходимости создает папку и файл.
         /// </summary>
         /// <param name="contacts">Список контактов.</param>
-        public static void SaveToFile(Project contacts,string directoruPath, string filePath)
+        public static void SaveToFile(Project contacts,string directorPath, string filePath)
         {
             JsonSerializer serializer = new JsonSerializer();
 
-            if (!Directory.Exists(directoruPath))
+            if (!Directory.Exists(directorPath))
             {
-                Directory.CreateDirectory(directoruPath);
+                Directory.CreateDirectory(directorPath);
             }
 
             if (!File.Exists((filePath)))
@@ -79,7 +79,7 @@ namespace ContactsApp
             using (StreamReader sr = new StreamReader(DefaultFilePath))
             using (JsonReader reader = new JsonTextReader(sr))
             {
-                contacts = (Project) serializer.Deserialize<Project>(reader);
+                contacts = serializer.Deserialize<Project>(reader);
             }
 
             return contacts;

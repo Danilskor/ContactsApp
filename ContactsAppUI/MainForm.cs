@@ -16,6 +16,8 @@ namespace ContactsAppUI
         public MainForm()
         {
             InitializeComponent();
+            this.Text = "Главное окно программы";
+            this.Size = new Size(400, 250);
         }
 
         private void MainForm_Load(object sender, EventArgs e)

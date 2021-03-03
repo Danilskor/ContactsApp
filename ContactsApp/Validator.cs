@@ -13,7 +13,7 @@ namespace ContactsApp
         /// </summary>
         /// <param name="text">Вводимая строкаю.</param>
         /// <param name="length">Максимальная длина строки.</param>
-        public static void AssertText(string text, int length, string field)
+        public static void AssertStringOnLength(string text, int length, string field)
         {
             if (string.IsNullOrEmpty(text))
             {

@@ -49,7 +49,7 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertText(value, 50, "Фамилия");
+                Validator.AssertStringOnLength(value, 50, "Фамилия");
                 Validator.ToNameFormat(value);
                 _surname = value;
             }
@@ -68,7 +68,7 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertText(value, 50, "Имя");
+                Validator.AssertStringOnLength(value, 50, "Имя");
                 Validator.ToNameFormat(value);
                 _name = value;
             }
@@ -108,7 +108,7 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertText(value, 50, "E-mail");
+                Validator.AssertStringOnLength(value, 50, "E-mail");
                 _email = value;
             }
         }
@@ -124,7 +124,7 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertText(value, 15, "ID Вконтакте");
+                Validator.AssertStringOnLength(value, 15, "ID Вконтакте");
                 VkID = value;
             }
         }

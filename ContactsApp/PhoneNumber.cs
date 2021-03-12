@@ -12,6 +12,8 @@ namespace ContactsApp
         /// </summary>
         private string _phoneNumber;
 
+        public PhoneNumber() {}
+
         /// <summary>
         /// Свойства номера телефона, с исключениями на валидность значений.
         /// </summary>

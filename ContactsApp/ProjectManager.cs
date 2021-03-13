@@ -57,6 +57,7 @@ namespace ContactsApp
             using (JsonWriter writer = new JsonTextWriter(sw))
             { 
                 serializer.Serialize(writer, contacts);
+                sw.Close();
             }
         }
 
@@ -64,19 +65,19 @@ namespace ContactsApp
         /// Метод десериализации, включает проверку на существование файла.
         /// </summary>
         /// <returns name="contacts">Список контактов</returns>
-        public static Project LoadFromFile()
+        public static Project LoadFromFile(string filePath)
         {
             
             Project contacts = null;
 
-            if (!File.Exists(DefaultFilePath))
+            if (!File.Exists(filePath))
             {
                 return new Project();
             }
 
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamReader sr = new StreamReader(DefaultFilePath))
+            using (StreamReader sr = new StreamReader(filePath))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 contacts = serializer.Deserialize<Project>(reader);

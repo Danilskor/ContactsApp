@@ -41,6 +41,7 @@ namespace ContactsAppUI
                 Contact.Surname = SurnameTextBox.Text;
                 Contact.Name = NameTextBox.Text;
                 Contact.BirthDate = BirthdayDateTimePicker.Value;
+                Contact.PhoneNumber = new PhoneNumber();
                 Contact.PhoneNumber.Number = PhoneTextBox.Text;
                 Contact.Email = EmailTextBox.Text;
                 Contact.VkID = VkTextBox.Text;

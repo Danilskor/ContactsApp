@@ -149,6 +149,9 @@ namespace ContactsApp
             PhoneNumber = new PhoneNumber(phoneNumber.Number);
         }
 
+        /// <summary>
+        /// Конструктор класса Contact.
+        /// </summary>
         public Contact()
         {
             PhoneNumber = new PhoneNumber();

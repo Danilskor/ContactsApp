@@ -7,6 +7,32 @@ namespace ContactsAppUI
     public partial class MainForm : Form
     {
         private Project _project = new Project();
+
+        /// <summary>
+        /// Путь к файлу.
+        /// </summary>
+        public static string DefaultDirectoryPath
+        {
+            get
+            {
+                var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                                    + @"\ContactsApp";
+                return directoryPath;
+            }
+        }
+
+        /// <summary>
+        /// Полное имя файла.
+        /// </summary>
+        public static string DefaultFilePath
+        {
+            get
+            {
+                var filePath = DefaultDirectoryPath + @"\ContactsApp.json";
+                return filePath;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -47,7 +73,7 @@ namespace ContactsAppUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _project = ProjectManager.LoadFromFile();
+            _project = ProjectManager.LoadFromFile( DefaultFilePath);
             RefreshList();
         }
 

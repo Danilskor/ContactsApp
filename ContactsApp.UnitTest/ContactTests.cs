@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using System;
 
+//Dot net fraimwork
+//Через библиотеку классов
 namespace ContactsApp.UnitTests
 {
     [TestFixture]

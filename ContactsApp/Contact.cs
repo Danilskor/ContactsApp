@@ -49,7 +49,8 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertStringOnLength(value, 50, "Фамилия");
+                Validator.AssertStringOnLength(value, 50, "Surname");
+                Validator.AssertStringOnNumbers(value, "Surname");
                 value = Validator.ToNameFormat(value);
                 _surname = value;
             }
@@ -68,7 +69,8 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertStringOnLength(value, 50, "Имя");
+                Validator.AssertStringOnLength(value, 50, "Name");
+                Validator.AssertStringOnNumbers(value, "Name");
                 value = Validator.ToNameFormat(value);
                 _name = value;
             }
@@ -89,8 +91,8 @@ namespace ContactsApp
                 if (value < minimalDate || value > DateTime.Now)
                 {
                     throw new ArgumentException(
-                        $"Дата рождения не может быть меньше 01.01.1900 и"
-                        +$"позже сегодняшнего дня.");
+                        $"Birthday cannot be less then 01.01.1900 and "
+                        +$"later than today.");
                 }
 
                 _birthDate = value;
@@ -124,7 +126,7 @@ namespace ContactsApp
             }
             set
             {
-                Validator.AssertStringOnLength(value, 15, "ID Вконтакте");
+                Validator.AssertStringOnLength(value, 15, "ID Vk");
                 _vkID = value;
             }
         }

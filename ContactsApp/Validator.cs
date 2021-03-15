@@ -26,6 +26,17 @@ namespace ContactsApp
                                             $"{length} символов.");
             }
         }
+
+        public static void AssertStringOnNumbers(string text, string field)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (char.IsDigit(text, i))
+                {
+                    throw new ArgumentException($"Строка {field} не должна содержать цифры");
+                }
+            }
+        }
         /// <summary>
         /// Первый символ преобразует в верхний регистр, остальные в нижний.
         /// </summary>

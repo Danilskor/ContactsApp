@@ -84,9 +84,9 @@
             this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditButton.BackColor = System.Drawing.SystemColors.Control;
             this.EditButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditButton.BackgroundImage")));
+            this.EditButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.EditButton.Location = new System.Drawing.Point(42, 418);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(23, 23);

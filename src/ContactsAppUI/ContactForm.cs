@@ -132,18 +132,23 @@ namespace ContactsAppUI
 
         private void VkTextBox_TextChanged(object sender, EventArgs e)
         {
-            var text = VkTextBox.Text;
+            TrySetValueToProperty(nameof(_cloneContact.VkID), (TextBox)sender);
+        }
+
+        private void TrySetValueToProperty(string propertyName, TextBox textbox)
+        {
+            var text = textbox.Text;
             try
             {
-                _cloneContact.VkID = text;
+                _cloneContact.GetType().GetProperty(propertyName).SetValue(_cloneContact, text);
             }
             catch (Exception exception)
             {
-                ErrorColorBackGroundTextBox(false, VkTextBox);
+                ErrorColorBackGroundTextBox(false, textbox);
                 return;
             }
-
-            ErrorColorBackGroundTextBox(true, VkTextBox);
+            _cloneContact.GetType().GetProperty(propertyName).SetValue(_cloneContact, text);
+            ErrorColorBackGroundTextBox(true, textbox);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

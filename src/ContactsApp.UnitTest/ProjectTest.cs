@@ -10,7 +10,7 @@ namespace ContactsApp.UnitTests
         public void Project__Set_CorrectValue()
         {
             //Setup: Подготовка объекта к тестированию
-            var contacts = new Project();
+            var project = new Project();
             var expectedSurname = "Фамилия";
             var expectedName = "Имя";
             var expectedBirthday = new DateTime(2000, 09, 28);
@@ -21,15 +21,15 @@ namespace ContactsApp.UnitTests
             var expectedNumber = number;
             var contact = new Contact(expectedSurname, expectedName,
                 expectedBirthday, expectedEmail, expectedVkID, expectedNumber);
-            contacts.Сontacts.Add(contact);
+            project.Сontacts.Add(contact);
 
-            //Testing: Вызов тестируемого метода
-            var actualSurname = contacts.Сontacts[0].Surname;
-            var actualName = contacts.Сontacts[0].Name;
-            var actualNumber = contacts.Сontacts[0].PhoneNumber;
-            var actualBirthday = contacts.Сontacts[0].BirthDate;
-            var actualEmail = contacts.Сontacts[0].Email;
-            var actualIdVK = contacts.Сontacts[0].VkID;
+            //Act: Вызов тестируемого метода
+            var actualSurname = project.Сontacts[0].Surname;
+            var actualName = project.Сontacts[0].Name;
+            var actualNumber = project.Сontacts[0].PhoneNumber;
+            var actualBirthday = project.Сontacts[0].BirthDate;
+            var actualEmail = project.Сontacts[0].Email;
+            var actualIdVK = project.Сontacts[0].VkID;
 
             //Assert : Сравнение результата
             Assert.Multiple(() =>

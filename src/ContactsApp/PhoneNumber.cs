@@ -5,7 +5,7 @@ namespace ContactsApp
     /// <summary>
     /// Телефонный номер
     /// </summary>
-    public class PhoneNumber
+    public class PhoneNumber: IEquatable<PhoneNumber>
     {
         /// <summary>
         /// Номер телефона.
@@ -55,6 +55,46 @@ namespace ContactsApp
         public PhoneNumber(string phoneNumber)
         {
             Number = phoneNumber;
+        }
+
+        public bool Equals(PhoneNumber other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return _phoneNumber == other._phoneNumber;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((PhoneNumber) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (_phoneNumber != null ? _phoneNumber.GetHashCode() : 0);
         }
     }
 }

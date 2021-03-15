@@ -5,7 +5,7 @@ namespace ContactsApp
     /// <summary>
     /// Контакт
     /// </summary>
-    public class Contact : ICloneable
+    public class Contact : ICloneable, IEquatable<Contact>
     {
         /// <summary>
         /// Фамилия
@@ -174,6 +174,60 @@ namespace ContactsApp
                 VkID = this.VkID,
                 PhoneNumber = new PhoneNumber(this.PhoneNumber.Number)
             };
+        }
+
+        public bool Equals(Contact other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return _surname == other._surname && 
+                   _name == other._name && 
+                   _birthDate.Equals(other._birthDate) && 
+                   _email == other._email && 
+                   _vkID == other._vkID && 
+                   Equals(PhoneNumber, other.PhoneNumber);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj)) 
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((Contact) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_surname != null ? _surname.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_name != null ? _name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ _birthDate.GetHashCode();
+                hashCode = (hashCode * 397) ^ (_email != null ? _email.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_vkID != null ? _vkID.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (PhoneNumber != null ? PhoneNumber.GetHashCode() : 0);
+                return hashCode;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using ContactsApp;
 
@@ -18,6 +19,10 @@ namespace ContactsAppUI
                 return;
             }
             RefreshList();
+            var surnames = _project.Сontacts.
+                Select(contact => contact.Surname).
+                Select(surname => surname.Contains("Bdfyjd")).
+                ToList();
         }
 
         private void RefreshList()

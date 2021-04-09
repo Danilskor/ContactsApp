@@ -1,41 +1,38 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using NUnit.Framework;
 
-namespace ContactsApp.UnitTests
+namespace ContactsApp.UnitTest
 {
     [TestFixture]
     class PhoneNumberTest
     {
-        [TestCase("12safd3", "Должно возникать исключение, если в номере будут не цифры",
-            TestName = "Присвоение неправильной строки номера телефона с буквами")]
-        [TestCase("712345678901", "Должно возникать исключение, если телефон длиннее 11 цифр",
-            TestName = "Присвоение неправильной строки номера телефона более 11 цифр")]
-        [TestCase("12345678901", "Должно возникать исключение, если в номере первая цифра не 7 ",
-            TestName = "Присвоение неправильной строки номера телефона, первая цифра не 7")]
-        public void Test_PhoneNumber_Set_ArgumentException(string wrongPhoneNumber, string message)
+        [TestCase("12safd3", TestName = "Assigning the wrong string to a phone number with letters")]
+        [TestCase("712345678901", TestName = "Assigning an invalid phone number string with more than 11 digits")]
+        [TestCase("12345678901", TestName = "Assigning a string with an not 7 first digit as a phone number")]
+        public void Test_PhoneNumber_Set_ArgumentException(string wrongPhoneNumber)
         {
-            //Setup: Подготовка объекта к тестированию
+            //Setup:
             var phoneNumber = new PhoneNumber();
 
-            //Assert : Сравнение результата
-            Assert.Throws<ArgumentException>(
-                () => { phoneNumber.Number = wrongPhoneNumber; },
-                message);
+            //Assert
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                phoneNumber.Number = wrongPhoneNumber; 
+            });
         }
 
         [TestCase(TestName = "Позитивный тест конструктора Contact")]
-        public void PhoneNumber_Set_CorrectValue()
+        public void PhoneNumber_SetCorrectValue_PhoneNumberSetCorrectly ()
         {
-            //Setup: Подготовка объекта к тестированию
-            var number = new PhoneNumber();
-            var expected = "79236078890";
-            number.Number = expected;
+            //Setup
+            var expected = new PhoneNumber();
+            expected.Number = "79236078890";
 
-            //Testing: Вызов тестируемого метода
-            var actual = number.Number;
+            //Act
+            var actual = "79236078890";
 
-            //Assert : Сравнение результата
-            Assert.AreEqual(expected, actual, "Номера не совпали");
+            //Assert
+            Assert.AreEqual(expected.Number, actual);
         }
     }
 }

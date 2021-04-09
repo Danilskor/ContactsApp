@@ -7,10 +7,13 @@ namespace ContactsAppUI
 {
     public partial class ContactForm : Form
     {
-        private Contact _contact;
-
-        private Contact _cloneContact;
-
+        /// <summary>
+        /// Склонированный контакт
+        /// </summary>
+        private List<Contact> _cloneContact;
+        /// <summary>
+        /// Свойства контакта
+        /// </summary>
         public Contact Contact { get; set; }
         
         private void ContactForm_Load(object sender, EventArgs e)
@@ -62,7 +65,7 @@ namespace ContactsAppUI
              }
              else
              {
-                 textBox.BackColor = Color.Crimson;
+                 textBox.BackColor = Color.LightCoral;
              }
         }
 

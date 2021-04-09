@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 namespace ContactsApp
 {
     /// <summary>
-    /// Сохраняет файл и извлекает из файла список контактов.
+    /// Saves the file and extracts the contact list from the file.
     /// </summary>
     public static class ProjectManager
     {
         /// <summary>
-        /// Путь к файлу.
+        /// Directory path.
         /// </summary>
         public static string DefaultDirectoryPath
         {
@@ -23,22 +23,22 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Полное имя файла.
+        /// File path.
         /// </summary>
         public static string DefaultFilePath
         {
             get
             {
-                var filePath = DefaultDirectoryPath + @"\ContactsApp.json";
+                var filePath = @"\ContactsApp.json";
                 return filePath;
             }
         }
 
         /// <summary>
-        /// Метод сериализации включает проверку существования пути и файла
-        /// при необходимости создает папку и файл.
+        /// The serialization method involves checking for the existence of a path and file,
+        /// and creates a folder and file as needed.
         /// </summary>
-        /// <param name="contacts">Список контактов.</param>
+        /// <param name="contacts">Contact list.</param>
         public static void SaveToFile(Project contacts,string directorPath, string filePath)
         {
             JsonSerializer serializer = new JsonSerializer();
@@ -48,12 +48,7 @@ namespace ContactsApp
                 Directory.CreateDirectory(directorPath);
             }
 
-            if (!File.Exists((filePath)))
-            {
-                File.Create(filePath);
-            }
-
-            using (StreamWriter sw = new StreamWriter(filePath))
+            using (StreamWriter sw = new StreamWriter(directorPath + filePath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             { 
                 serializer.Serialize(writer, contacts);
@@ -62,28 +57,28 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Метод десериализации, включает проверку на существование файла.
+        /// The deserialization method includes checking for the existence of a file.
         /// </summary>
-        /// <returns name="contacts">Список контактов</returns>
-        public static Project LoadFromFile(string filePath)
+        /// <returns name="project">Contact list</returns>
+        public static Project LoadFromFile(string directorPath, string filePath)
         {
-            
-            Project contacts = null;
-
-            if (!File.Exists(filePath))
+            if (!File.Exists(directorPath + filePath))
             {
                 return new Project();
             }
 
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamReader sr = new StreamReader(filePath))
+            using (StreamReader sr = new StreamReader(directorPath + filePath))
             using (JsonReader reader = new JsonTextReader(sr))
             {
-                contacts = serializer.Deserialize<Project>(reader);
+                var project = serializer.Deserialize<Project>(reader);
+                if (project == null)
+                {
+                    return new Project();
+                }
+                return project;
             }
-
-            return contacts;
         }
     }
 }

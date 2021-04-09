@@ -2,24 +2,38 @@
 using System.Linq;
 using System.Windows.Forms;
 using ContactsApp;
+using System.Collections.Generic;
 
 namespace ContactsAppUI
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        ///  /// Cписок контактов
+        /// </summary>
         private Project _project;
+
+        /// <summary>
+        /// Список контактов хранит контакты после поиска
+        /// </summary>
+        private List<Contact> _substringFindProject = new List<Contact>();
+
+        /// <summary>
+        /// Список хранит контакты, у которых сегодня день рождения
+        /// </summary>
+        private List<Contact> _birthdayProject = new List<Contact>();
 
         public MainForm()
         {
             InitializeComponent();
-            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultDirectoryPath, ProjectManager.DefaultFilePath);
             if (_project == null)
             {
                 _project = new Project();
                 return;
             }
             RefreshList();
-            var surnames = _project.Сontacts.
+            var surnames = _project.Contacts.
                 Select(contact => contact.Surname).
                 Select(surname => surname.Contains("Bdfyjd")).
                 ToList();
@@ -28,9 +42,13 @@ namespace ContactsAppUI
         private void RefreshList()
         {
             ContactListBox.DataSource = null;
-            ContactListBox.DataSource = _project.Сontacts;
+            ContactListBox.DataSource = _project.Contacts;
             ContactListBox.DisplayMember = nameof(Contact.Surname);
-            ProjectManager.SaveToFile(_project,ProjectManager.DefaultDirectoryPath, ProjectManager.DefaultFilePath);
+            ProjectManager.SaveToFile(
+                _project,
+                ProjectManager.DefaultDirectoryPath, 
+                ProjectManager.DefaultFilePath
+                );
         }
 
         /// <summary>
@@ -66,7 +84,7 @@ namespace ContactsAppUI
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _project.Сontacts.Remove((Contact)ContactListBox.SelectedItem);
+                    _project.Contacts.Remove((Contact)ContactListBox.SelectedItem);
                     RefreshList();
                 }
             }
@@ -80,7 +98,7 @@ namespace ContactsAppUI
             var form = new ContactForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                _project.Сontacts.Add(form.Contact);
+                _project.Contacts.Add(form.Contact);
                 RefreshList();
             }
         }

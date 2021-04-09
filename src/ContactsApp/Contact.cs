@@ -3,22 +3,22 @@
 namespace ContactsApp
 {
     /// <summary>
-    /// Контакт
+    /// Contact
     /// </summary>
     public class Contact : ICloneable, IEquatable<Contact>
     {
         /// <summary>
-        /// Фамилия
+        /// Surname
         /// </summary>
         private string _surname;
 
         /// <summary>
-        /// Имя
+        /// Name
         /// </summary>
         private string _name;
 
         /// <summary>
-        /// Дата рождения
+        /// Birthday
         /// </summary>
         private DateTime _birthDate;
 
@@ -28,18 +28,18 @@ namespace ContactsApp
         private string _email;
 
         /// <summary>
-        /// ID Вконтакте
+        /// vk.com ID
         /// </summary>
         private string _vkID;
 
         /// <summary>
-        /// Свойство номера телефона.
+        /// Phone number properties.
         /// </summary>
         public PhoneNumber PhoneNumber { get; set;}
 
         /// <summary>
-        /// Свойства фамилли с проверкой на валидность данных
-        /// Первый символ преобразует в верхний регистр, остальные в нижний.
+        /// Surname properties with valid assert
+        /// The first character converts to uppercase, the rest to lowercase.
         /// </summary>
         public string Surname
         {
@@ -57,10 +57,9 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Свойство имени с проверкой на валидность данных
-        /// Первый символ преобразует в верхний регистр, остальные в нижний.
+        /// Name properties with valid assert
+        /// The first character converts to uppercase, the rest to lowercase.
         /// </summary>
-
         public string Name
         {
             get
@@ -77,7 +76,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Свойства даты рождения с проверкой на валидность данных
+        /// Birthday properties with valid assert
         /// </summary>
         public DateTime BirthDate
         {
@@ -100,7 +99,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Свойства Email'a.
+        /// Email properties.
         /// </summary>
         public string Email
         {
@@ -116,7 +115,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Свойства ID Вконтакте
+        /// vk.com ID properties
         /// </summary>
         public string VkID
         {
@@ -132,7 +131,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Конструктор класса Contact.
+        /// Contact constructor.
         /// </summary>
         /// <param name="surname"> Фамилия.</param>
         /// <param name="name"> Имя. </param>
@@ -152,7 +151,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Конструктор класса Contact.
+        /// Contact constructor.
         /// </summary>
         public Contact()
         {
@@ -160,9 +159,9 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Метод кланирования объекта Contact.
+        /// Clone Contact.
         /// </summary>
-        /// <returns> Склонированный контакт. </returns>
+        /// <returns> Cloned contact. </returns>
         public object Clone()
         {
             return new Contact(Surname, Name, BirthDate, Email, VkID, PhoneNumber)
@@ -193,7 +192,7 @@ namespace ContactsApp
                    _birthDate.Equals(other._birthDate) && 
                    _email == other._email && 
                    _vkID == other._vkID && 
-                   Equals(PhoneNumber, other.PhoneNumber);
+                   PhoneNumber.Equals(other.PhoneNumber);
         }
 
         public override bool Equals(object obj)
@@ -203,7 +202,7 @@ namespace ContactsApp
                 return false;
             }
 
-            if (ReferenceEquals(this, obj)) 
+            if (ReferenceEquals(this, obj))
             {
                 return true;
             }
@@ -213,7 +212,7 @@ namespace ContactsApp
                 return false;
             }
 
-            return Equals((Contact) obj);
+            return Equals((Contact)obj);
         }
 
         public override int GetHashCode()

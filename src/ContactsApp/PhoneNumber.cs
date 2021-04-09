@@ -3,19 +3,19 @@
 namespace ContactsApp
 {
     /// <summary>
-    /// Телефонный номер
+    /// Phone number
     /// </summary>
     public class PhoneNumber: IEquatable<PhoneNumber>
     {
         /// <summary>
-        /// Номер телефона.
+        /// Phone number.
         /// </summary>
         private string _phoneNumber;
 
         public PhoneNumber() {}
 
         /// <summary>
-        /// Свойства номера телефона, с исключениями на валидность значений.
+        /// Phone number properties.
         /// </summary>
         public string Number
         {
@@ -29,19 +29,19 @@ namespace ContactsApp
                 {
                     if (!char.IsDigit(var))
                     {
-                        throw new ArgumentException("Строка должна содержать только цифры");
+                        throw new ArgumentException("The string must contain only numbers");
                     }
                 }
 
                 if (value.Length != 11)
                 {
-                    throw new ArgumentException("Номер должен состоять из 11 цифр");
+                    throw new ArgumentException("The number must be 11 digits");
                 }
 
                 var abc = value[0];
                 if (value[0] != '7')
                 {
-                    throw new ArgumentException("Код страны должен быть 7");
+                    throw new ArgumentException("Country code must be 7");
                 }
 
                 _phoneNumber = value;
@@ -49,9 +49,9 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Конструктор класса номер телефона.
+        /// Phone number constructor.
         /// </summary>
-        /// <param name="numberPhone">Номер телефона.</param>
+        /// <param name="numberPhone">Phone number.</param>
         public PhoneNumber(string phoneNumber)
         {
             Number = phoneNumber;

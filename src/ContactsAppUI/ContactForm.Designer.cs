@@ -201,6 +201,7 @@
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.Location = new System.Drawing.Point(295, 186);
+            this.CancelButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 51;
@@ -227,9 +228,12 @@
             this.Controls.Add(this.BirthdayLabel);
             this.Controls.Add(this.SurnameLabel);
             this.Controls.Add(this.NameLabel);
+            this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(408, 258);
             this.Name = "ContactForm";
             this.Text = "Add/Edit Contact";
             this.Load += new System.EventHandler(this.ContactForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContactForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

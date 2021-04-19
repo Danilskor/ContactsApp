@@ -14,9 +14,9 @@ namespace ContactsAppUI
         private Project _project;
 
         /// <summary>
-        /// Список контактов хранит контакты после поиска
+        /// Список контактов хранит контакты после поиска или сортировки
         /// </summary>
-        private List<Contact> _substringFindProject = new List<Contact>();
+        private List<Contact> _usingContacts;
 
         /// <summary>
         /// Список хранит контакты, у которых сегодня день рождения
@@ -26,29 +26,42 @@ namespace ContactsAppUI
         public MainForm()
         {
             InitializeComponent();
-            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultDirectoryPath, ProjectManager.DefaultFilePath);
+            _project = ProjectManager.LoadFromFile(
+                ProjectManager.DefaultDirectoryPath, 
+                ProjectManager.DefaultFilePath
+                );
+            _usingContacts = _project.Contacts;
+
             if (_project == null)
             {
                 _project = new Project();
                 return;
             }
+
             RefreshList();
-            var surnames = _project.Contacts.
-                Select(contact => contact.Surname).
-                Select(surname => surname.Contains("Bdfyjd")).
-                ToList();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (_project.GetListBirthday().Length > 0)
+            {
+                BirthdayLabel.Text = $"Сегодня день рождения: {_project.GetListBirthday()} ";
+                BirthdayLabel.Visible = true;
+                BackgroundPanel.Visible = true;
+            }
         }
 
         private void RefreshList()
         {
             ContactListBox.DataSource = null;
-            ContactListBox.DataSource = _project.Contacts;
+            ContactListBox.DataSource = _usingContacts;
+            Project.SortContactsList(_usingContacts);
             ContactListBox.DisplayMember = nameof(Contact.Surname);
             ProjectManager.SaveToFile(
                 _project,
-                ProjectManager.DefaultDirectoryPath, 
+                ProjectManager.DefaultDirectoryPath,
                 ProjectManager.DefaultFilePath
-                );
+            );
         }
 
         /// <summary>
@@ -63,8 +76,9 @@ namespace ContactsAppUI
 
             var form = new ContactForm();
             form.Contact = (Contact)ContactListBox.SelectedItem;
+            
             if (form.ShowDialog() == DialogResult.OK)
-            {
+            { 
                 RefreshList();
             }
         }
@@ -84,7 +98,8 @@ namespace ContactsAppUI
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _project.Contacts.Remove((Contact)ContactListBox.SelectedItem);
+                    _project.Contacts.Remove((Contact)ContactListBox.SelectedItem); ;
+                    _usingContacts.Remove((Contact)ContactListBox.SelectedItem);
                     RefreshList();
                 }
             }
@@ -99,6 +114,7 @@ namespace ContactsAppUI
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _project.Contacts.Add(form.Contact);
+                _usingContacts.Add(form.Contact);
                 RefreshList();
             }
         }
@@ -106,6 +122,8 @@ namespace ContactsAppUI
         private void AddContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddContact();
+            _usingContacts = Project.Find(FindTextBox.Text, _project.Contacts);
+            RefreshList();
         }
 
         private void ContactListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,11 +145,15 @@ namespace ContactsAppUI
         private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
            EditContact();
+           _usingContacts = Project.Find(FindTextBox.Text, _project.Contacts);
+           RefreshList();
         }
 
         private void DeleteContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteContact();
+            _usingContacts = Project.Find(FindTextBox.Text, _project.Contacts);
+            RefreshList();
         }
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -152,6 +174,37 @@ namespace ContactsAppUI
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DeleteContact();
+        }
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _usingContacts =  Project.Find(FindTextBox.Text, _project.Contacts);
+            RefreshList();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                case Keys.Subtract:
+                    DeleteContact();
+                    break;
+
+                case Keys.Add:
+                    AddContact();
+                    break;
+
+
+                case Keys.F1:
+                    var form = new AboutForm();
+                    form.ShowDialog();
+                    break;
+
+                case Keys.Escape:
+                    Environment.Exit(0);
+                    break;
+            }
         }
     }
 }

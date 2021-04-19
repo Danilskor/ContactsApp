@@ -72,7 +72,7 @@ namespace ContactsApp.UnitTest
         }
 
         [TestCase(TestName = "Positive test deserialize")]
-        public void ProjectMamager_LoadCorrectionData_FileSavedCorrectly()
+        public void ProjectManager_LoadCorrectionData_FileSavedCorrectly()
         {
             //SetUp
             var expectedProject = CorrectProject;

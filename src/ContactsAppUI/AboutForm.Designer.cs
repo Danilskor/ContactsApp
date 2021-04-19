@@ -120,7 +120,7 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "ContactsApp";
             // 
-            // Form1
+            // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,8 +133,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(397, 350);
+            this.MinimumSize = new System.Drawing.Size(397, 350);
+            this.Name = "AboutForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "About";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

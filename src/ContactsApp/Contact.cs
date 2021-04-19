@@ -5,7 +5,7 @@ namespace ContactsApp
     /// <summary>
     /// Contact
     /// </summary>
-    public class Contact : ICloneable, IEquatable<Contact>
+    public class Contact : ICloneable, IEquatable<Contact>, IComparable
     {
         /// <summary>
         /// Surname
@@ -227,6 +227,12 @@ namespace ContactsApp
                 hashCode = (hashCode * 397) ^ (PhoneNumber != null ? PhoneNumber.GetHashCode() : 0);
                 return hashCode;
             }
+        }
+        
+        public int CompareTo(object obj)
+        {
+            Contact comparableContact = (Contact)obj;
+            return String.Compare(this.Surname, comparableContact.Surname);
         }
     }
 }

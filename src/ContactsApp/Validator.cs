@@ -50,7 +50,7 @@ namespace ContactsApp
         /// <returns></returns>
         public static string ToNameFormat(string text)
         {
-            text.ToLower();
+            text = text.ToLower();
             text = char.ToUpper(text[0]) + text.Substring(1);
             return text;
         }

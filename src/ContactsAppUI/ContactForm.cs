@@ -10,7 +10,7 @@ namespace ContactsAppUI
         /// <summary>
         /// Склонированный контакт
         /// </summary>
-        private List<Contact> _cloneContact;
+        private Contact _cloneContact;
         /// <summary>
         /// Свойства контакта
         /// </summary>
@@ -162,6 +162,14 @@ namespace ContactsAppUI
         public ContactForm()
         {
             InitializeComponent();
+        }
+
+        private void ContactForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
         }
     }
 }

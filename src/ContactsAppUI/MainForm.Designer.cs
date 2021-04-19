@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.AddButton = new System.Windows.Forms.Button();
-            this.EditButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.FindTextBox = new System.Windows.Forms.TextBox();
             this.FindLabel = new System.Windows.Forms.Label();
@@ -57,7 +56,9 @@
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContactListBox = new System.Windows.Forms.ListBox();
             this.BackgroundPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.BirthdayLabel = new System.Windows.Forms.Label();
+            this.EditButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.BackgroundPanel.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +72,7 @@
             this.AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MintCream;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.AddButton.Location = new System.Drawing.Point(12, 420);
+            this.AddButton.Location = new System.Drawing.Point(12, 385);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(23, 23);
             this.AddButton.TabIndex = 0;
@@ -79,27 +80,12 @@
             this.AddButton.UseVisualStyleBackColor = false;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // EditButton
-            // 
-            this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditButton.BackColor = System.Drawing.SystemColors.Control;
-            this.EditButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditButton.BackgroundImage")));
-            this.EditButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.EditButton.FlatAppearance.BorderSize = 0;
-            this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.Location = new System.Drawing.Point(41, 420);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(23, 23);
-            this.EditButton.TabIndex = 1;
-            this.EditButton.UseVisualStyleBackColor = false;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
-            // 
             // DeleteButton
             // 
             this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteButton.Location = new System.Drawing.Point(70, 420);
+            this.DeleteButton.Location = new System.Drawing.Point(70, 385);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(23, 23);
             this.DeleteButton.TabIndex = 2;
@@ -113,6 +99,7 @@
             this.FindTextBox.Name = "FindTextBox";
             this.FindTextBox.Size = new System.Drawing.Size(232, 20);
             this.FindTextBox.TabIndex = 3;
+            this.FindTextBox.TextChanged += new System.EventHandler(this.FindTextBox_TextChanged);
             // 
             // FindLabel
             // 
@@ -145,7 +132,7 @@
             this.VkTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.VkTextBox.Name = "VkTextBox";
             this.VkTextBox.ReadOnly = true;
-            this.VkTextBox.Size = new System.Drawing.Size(389, 20);
+            this.VkTextBox.Size = new System.Drawing.Size(320, 20);
             this.VkTextBox.TabIndex = 35;
             // 
             // EmailTextBox
@@ -156,7 +143,7 @@
             this.EmailTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.ReadOnly = true;
-            this.EmailTextBox.Size = new System.Drawing.Size(389, 20);
+            this.EmailTextBox.Size = new System.Drawing.Size(320, 20);
             this.EmailTextBox.TabIndex = 34;
             // 
             // PhoneTextBox
@@ -167,7 +154,7 @@
             this.PhoneTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.ReadOnly = true;
-            this.PhoneTextBox.Size = new System.Drawing.Size(389, 20);
+            this.PhoneTextBox.Size = new System.Drawing.Size(320, 20);
             this.PhoneTextBox.TabIndex = 33;
             // 
             // NameTextBox
@@ -178,7 +165,7 @@
             this.NameTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.ReadOnly = true;
-            this.NameTextBox.Size = new System.Drawing.Size(389, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(320, 20);
             this.NameTextBox.TabIndex = 32;
             // 
             // SurnameTextBox
@@ -189,7 +176,7 @@
             this.SurnameTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.SurnameTextBox.Name = "SurnameTextBox";
             this.SurnameTextBox.ReadOnly = true;
-            this.SurnameTextBox.Size = new System.Drawing.Size(389, 20);
+            this.SurnameTextBox.Size = new System.Drawing.Size(320, 20);
             this.SurnameTextBox.TabIndex = 31;
             // 
             // VkLabel
@@ -272,7 +259,7 @@
             this.ToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(768, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(699, 24);
             this.menuStrip1.TabIndex = 37;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -345,7 +332,7 @@
             this.ContactListBox.IntegralHeight = false;
             this.ContactListBox.Location = new System.Drawing.Point(12, 64);
             this.ContactListBox.Name = "ContactListBox";
-            this.ContactListBox.Size = new System.Drawing.Size(261, 315);
+            this.ContactListBox.Size = new System.Drawing.Size(261, 280);
             this.ContactListBox.TabIndex = 38;
             this.ContactListBox.SelectedIndexChanged += new System.EventHandler(this.ContactListBox_SelectedIndexChanged);
             // 
@@ -354,30 +341,59 @@
             this.BackgroundPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BackgroundPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BackgroundPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BackgroundPanel.Controls.Add(this.panel1);
             this.BackgroundPanel.Controls.Add(this.BirthdayLabel);
-            this.BackgroundPanel.Location = new System.Drawing.Point(303, 385);
+            this.BackgroundPanel.Location = new System.Drawing.Point(302, 343);
             this.BackgroundPanel.Name = "BackgroundPanel";
-            this.BackgroundPanel.Size = new System.Drawing.Size(454, 58);
+            this.BackgroundPanel.Size = new System.Drawing.Size(385, 65);
             this.BackgroundPanel.TabIndex = 39;
             this.BackgroundPanel.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackgroundImage = global::ContactsAppUI.Properties.Resources.Безымянный;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(58, 59);
+            this.panel1.TabIndex = 40;
+            // 
             // BirthdayLabel
             // 
+            this.BirthdayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BirthdayLabel.AutoSize = true;
             this.BirthdayLabel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.BirthdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BirthdayLabel.Location = new System.Drawing.Point(83, 20);
+            this.BirthdayLabel.Location = new System.Drawing.Point(67, 23);
             this.BirthdayLabel.Name = "BirthdayLabel";
             this.BirthdayLabel.Size = new System.Drawing.Size(96, 18);
             this.BirthdayLabel.TabIndex = 20;
             this.BirthdayLabel.Text = "BirthdayLabel";
-            this.BirthdayLabel.Visible = false;
+            // 
+            // EditButton
+            // 
+            this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditButton.BackColor = System.Drawing.SystemColors.Control;
+            this.EditButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditButton.BackgroundImage")));
+            this.EditButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.EditButton.FlatAppearance.BorderSize = 0;
+            this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditButton.Location = new System.Drawing.Point(41, 385);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(23, 23);
+            this.EditButton.TabIndex = 1;
+            this.EditButton.UseVisualStyleBackColor = false;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(768, 455);
+            this.ClientSize = new System.Drawing.Size(699, 420);
             this.Controls.Add(this.BackgroundPanel);
             this.Controls.Add(this.ContactListBox);
             this.Controls.Add(this.BirthdayDateTimePicker);
@@ -399,8 +415,13 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(608, 333);
             this.Name = "MainForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "ContactsApp";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.BackgroundPanel.ResumeLayout(false);
@@ -441,6 +462,7 @@
         private System.Windows.Forms.ListBox ContactListBox;
         private System.Windows.Forms.Panel BackgroundPanel;
         private System.Windows.Forms.Label BirthdayLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -21,9 +21,11 @@ OutputBaseFilename=ContactsAppInstaller
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+UninstallFilesDir={autopf}\{#MyAppName}\Unninstaller
 
-[UninstallDelete]
-Type: files; Name: "{app}\*.*"
+[Dirs]
+Name: "{app}\Application"
+Name: "{app}\Unninstaller"
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -32,18 +34,18 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "Release\Icon.ico"; DestDir: {app};
-Source: "Release\ContactsAppUI.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Release\Icon.ico"; DestDir: {app}\Application;
+Source: "Release\ContactsAppUI.exe"; DestDir: "{app}\Application"; Flags: ignoreversion
+Source: "Release\*"; DestDir: "{app}\Application"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\Application\{#MyAppExeName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon;IconFilename: "{app}\Icon.ico"
 
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\Application\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

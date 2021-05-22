@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="call &quot;$(SolutionDir)InstallScripts\install.iss&quot;" />
+    <Exec Command="&quot;$(SolutionDir)packages\Tools.InnoSetup.6.1.2\tools\ISCC.exe&quot; &quot;$(SolutionDir)InstallScripts\install.iss&quot;&#xD;&#xA;rmdir /s /q &quot;$(SolutionDir)InstallScripts\Release&quot;" />
   </Target>
 
 </Project>

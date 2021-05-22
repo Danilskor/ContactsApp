@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactForm));
             this.BirthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.VkTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -52,7 +53,7 @@
             this.BirthdayDateTimePicker.MinimumSize = new System.Drawing.Size(40, 20);
             this.BirthdayDateTimePicker.Name = "BirthdayDateTimePicker";
             this.BirthdayDateTimePicker.Size = new System.Drawing.Size(107, 20);
-            this.BirthdayDateTimePicker.TabIndex = 49;
+            this.BirthdayDateTimePicker.TabIndex = 3;
             // 
             // VkTextBox
             // 
@@ -63,7 +64,7 @@
             this.VkTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.VkTextBox.Name = "VkTextBox";
             this.VkTextBox.Size = new System.Drawing.Size(280, 20);
-            this.VkTextBox.TabIndex = 48;
+            this.VkTextBox.TabIndex = 6;
             this.VkTextBox.TextChanged += new System.EventHandler(this.VkTextBox_TextChanged);
             // 
             // EmailTextBox
@@ -75,7 +76,7 @@
             this.EmailTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(280, 20);
-            this.EmailTextBox.TabIndex = 47;
+            this.EmailTextBox.TabIndex = 5;
             this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
             // 
             // PhoneTextBox
@@ -87,7 +88,7 @@
             this.PhoneTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(280, 20);
-            this.PhoneTextBox.TabIndex = 46;
+            this.PhoneTextBox.TabIndex = 4;
             this.PhoneTextBox.TextChanged += new System.EventHandler(this.PhoneTextBox_TextChanged);
             // 
             // NameTextBox
@@ -99,7 +100,7 @@
             this.NameTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(280, 20);
-            this.NameTextBox.TabIndex = 45;
+            this.NameTextBox.TabIndex = 2;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // SurnameTextBox
@@ -111,7 +112,7 @@
             this.SurnameTextBox.MinimumSize = new System.Drawing.Size(40, 20);
             this.SurnameTextBox.Name = "SurnameTextBox";
             this.SurnameTextBox.Size = new System.Drawing.Size(280, 20);
-            this.SurnameTextBox.TabIndex = 44;
+            this.SurnameTextBox.TabIndex = 1;
             this.SurnameTextBox.TextChanged += new System.EventHandler(this.SurnameTextBox_TextChanged);
             // 
             // VkLabel
@@ -192,7 +193,7 @@
             this.OKButton.Location = new System.Drawing.Point(214, 186);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 50;
+            this.OKButton.TabIndex = 7;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
@@ -204,7 +205,7 @@
             this.CancelButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 51;
+            this.CancelButton.TabIndex = 8;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -228,6 +229,7 @@
             this.Controls.Add(this.BirthdayLabel);
             this.Controls.Add(this.SurnameLabel);
             this.Controls.Add(this.NameLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(408, 258);
             this.Name = "ContactForm";

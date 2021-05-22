@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.GithubLinkLabel = new System.Windows.Forms.LinkLabel();
             this.EmailLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@
             this.GithubLinkLabel.Location = new System.Drawing.Point(63, 149);
             this.GithubLinkLabel.Name = "GithubLinkLabel";
             this.GithubLinkLabel.Size = new System.Drawing.Size(151, 17);
-            this.GithubLinkLabel.TabIndex = 15;
+            this.GithubLinkLabel.TabIndex = 2;
             this.GithubLinkLabel.TabStop = true;
             this.GithubLinkLabel.Text = "Danilskor/ContactsApp";
             // 
@@ -56,7 +57,7 @@
             this.EmailLinkLabel.Location = new System.Drawing.Point(140, 132);
             this.EmailLinkLabel.Name = "EmailLinkLabel";
             this.EmailLinkLabel.Size = new System.Drawing.Size(153, 17);
-            this.EmailLinkLabel.TabIndex = 14;
+            this.EmailLinkLabel.TabIndex = 1;
             this.EmailLinkLabel.TabStop = true;
             this.EmailLinkLabel.Text = "danilskor2000@mail.ru";
             // 
@@ -133,6 +134,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(397, 350);
             this.MinimumSize = new System.Drawing.Size(397, 350);

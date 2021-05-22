@@ -87,7 +87,7 @@ namespace ContactsApp
             set
             {
                 var minimalDate = new DateTime(1900, 01, 01);
-                if (value < minimalDate || value > DateTime.Now)
+                if (value < minimalDate || value.Date > DateTime.Now)
                 {
                     throw new ArgumentException(
                         $"Birthday cannot be less then 01.01.1900 and "

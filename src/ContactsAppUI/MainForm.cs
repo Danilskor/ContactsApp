@@ -30,7 +30,7 @@ namespace ContactsAppUI
                 ProjectManager.DefaultDirectoryPath, 
                 ProjectManager.DefaultFilePath
                 );
-            _usingContacts = _project.Contacts;
+            _usingContacts = Project.Find(FindTextBox.Text, _project.Contacts);
 
             if (_project == null)
             {
@@ -178,6 +178,10 @@ namespace ContactsAppUI
 
         private void FindTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (FindTextBox.Text.Contains("-") || FindTextBox.Text.Contains("+"))
+            {
+                FindTextBox.Text = FindTextBox.Text.Substring(0, FindTextBox.Text.Length - 1);
+            }
             _usingContacts =  Project.Find(FindTextBox.Text, _project.Contacts);
             RefreshList();
         }

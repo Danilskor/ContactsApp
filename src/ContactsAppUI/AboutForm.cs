@@ -24,5 +24,10 @@ namespace ContactsAppUI
                 Close();
             }
         }
+
+        private void AboutForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
